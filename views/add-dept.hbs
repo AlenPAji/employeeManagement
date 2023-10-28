@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department Form</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h2>Department Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/ceo/add-dept" method="POST"> <!-- Replace "/submit" with your form submission URL -->
+                            <div class="form-group">
+                                <label for="departmentname">Department Name:</label>
+                                <input type="text" class="form-control" id="departmentname" name="departmentname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="departmentid">Department ID:</label>
+                                <input type="text" class="form-control" id="departmentid" name="departmentid" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add the Bootstrap JavaScript and jQuery scripts if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

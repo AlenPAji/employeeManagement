@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+
+    <div class="container mt-4">
+      <form action="/ceo/recruit-employee" method="POST">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+          name="name"
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Enter your name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input
+            type="number"
+            name="age"
+            class="form-control"
+            id="age"
+            placeholder="Enter your age"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="Email">Email:</label>
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="Email"
+            placeholder="Enter your Email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="department">Department:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="department"
+            name="department"
+            value="{{response.name}}"
+            placeholder="Enter your department"
+            disabled
+          />
+
+        </div>
+
+       <div class="form-group">
+  <label for="department">Department:</label>
+  <input
+    type="text"
+    class="form-control"
+    id="department"
+    name="departmentid"
+    value="{{response._id}}"
+    placeholder="Enter your department"
+    hidden
+  />
+</div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+  </body>
+</html>

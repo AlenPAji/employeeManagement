@@ -1,0 +1,77 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* Center the content horizontally */ .center-content { display: flex;
+      flex-direction: column; align-items: center; text-align: center;
+      margin-top: 20px; } /* Circular profile picture */ .profile-picture {
+      width: 150px; height: 150px; border-radius: 50%; overflow: hidden; }
+    </style>
+    <title>Profile Page</title>
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+      <div class="center-content">
+        <!-- Circular Profile Picture -->
+        <div class="profile-picture">
+          <img src="image-not-found" alt="image-not-found" class="img-fluid" />
+        </div>
+
+        <!-- Name -->
+        <h2 class="mt-3">{{ceoname}}</h2>
+      </div>
+    </div>
+
+    <section>
+
+      <a href="/ceo/add-dept" class="btn btn-success m-3">Add Department</a>
+      <table class="table p-2">
+
+        <thead>
+          <tr>
+            <th scope="col">Department ID</th>
+            <th scope="col">Department Name</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {{#each deptdetails}}
+            <tr>
+              <th scope="row">{{this.departmentid}}</th>
+
+              <td>{{this.name}}</td>
+
+                 <td>
+                <a
+                  href="/ceo/view-employee?id={{this._id}}"
+                  class="btn btn-primary"
+                >view Employees</a>
+
+              <td>
+                <a
+                  href="/ceo/recruit-employee?id={{this._id}}"
+                  class="btn btn-success"
+                >Recruit</a>
+                
+
+            </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    ></script>
+  </body>
+</html>
