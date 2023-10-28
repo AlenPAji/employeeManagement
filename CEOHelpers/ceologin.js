@@ -35,7 +35,15 @@ function login(ceodata){
 
 
         const filter={email:eml}
-        const val = await ceo.findOne(filter).maxTimeMS(30000).exec();
+        try {
+            const val = await ceo.findOne(filter).maxTimeMS(15000).exec();
+            // Rest of your code
+        } catch (error) {
+            console.error('Mongoose error:', error);
+            // Handle the error, including the timeout error
+            resolve({ status: false });
+        }
+        
 
         
         if(val){
