@@ -35,7 +35,8 @@ function login(ceodata){
 
 
         const filter={email:eml}
-        const val=await ceo.findOne(filter).exec();
+        const val = await ceo.findOne(filter).maxTimeMS(30000).exec();
+
         
         if(val){
 
