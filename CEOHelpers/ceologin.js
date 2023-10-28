@@ -38,11 +38,7 @@ function login(ceodata){
         try {
             const val = await ceo.findOne(filter).maxTimeMS(15000).exec();
             // Rest of your code
-        } catch (error) {
-            console.error('Mongoose error:', error);
-            // Handle the error, including the timeout error
-            resolve({ status: false });
-        }
+       
         
 
         
@@ -64,6 +60,11 @@ function login(ceodata){
            //console.log("seen");
            resolve({status:false})
         }
+    } catch (error) {
+        console.error('Mongoose error:', error);
+        // Handle the error, including the timeout error
+        resolve({ status: false });
+    }
     }
     )
 
