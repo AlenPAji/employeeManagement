@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <title>Login Form</title>
     <!-- Add the Bootstrap CSS link -->
@@ -16,18 +17,15 @@
               <h2>{{user.type}} Login</h2>
             </div>
             <div class="card-body">
+              <!-- Display testing credentials message -->
+              <p class="text-info text-center">
+                Use the following credentials for testing:<br>
+                Email: johnceo@gmail.com<br>
+                Password: 1234
+              </p>
+
               <form action="/ceo/login" method="POST">
                 <div class="form-group">
-
-                  {{!-- <label for="nam">Name:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="nam"
-                    required
-                  /> --}}
-
                   <label for="email">Email:</label>
                   <input
                     type="email"

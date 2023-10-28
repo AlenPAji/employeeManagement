@@ -20,7 +20,7 @@
     {{#each response}}
 
 
-  
+
     <div class="col-md-4">
       <div class="card">
         <img src="/stylesheets/images/employee.png" class="card-img-top" alt="..." width="20rem" height="250rem">
@@ -29,9 +29,19 @@
     <h5 class="card-title">{{name}}</h5>
     <p class="card-text">Age: {{age}}</p>
     <p class="card-text">Email: {{email}}</p>
-     <p class="card-text">Joining Date: {{email}}</p>
+     <p class="card-text">Joining Date: {{formattedDate}}</p>
+     <p class="card-text">Experience: {{experience}}</p>
+
     
     
+    
+{{#if isExperienceGreaterThan5}}
+<a class="btn btn-primary" href="/ceo/appoint-manager?id={{this._id}}&departmentid={{this.departmentid}}&manager_name={{this.name}}">Appoint as Manager</a>
+
+{{else}}
+<button class="btn btn-secondary" disabled>Not Eligible</button>
+{{/if}}
+
   </div>
 </div>
 

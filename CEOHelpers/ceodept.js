@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 var empdet = require('../EmployeeHelers/Employeeregister');
 //const bcrypt = require('bcrypt')
+const moment = require('moment');
 const departmentSchema = new Schema({
 
     name : String,
@@ -13,7 +14,14 @@ const departmentSchema = new Schema({
           ref: "emp",
         },
       },
-    ]
+    ],
+
+    manager: {
+      type: Schema.Types.ObjectId,
+      ref: 'emp', // Reference to the "Department" model
+  },
+
+  manager_name:String
 
     
   });
@@ -72,14 +80,44 @@ async function fnd() {
    
   }
 
+  function getdeptDetails(crntdept){
+    return new Promise(async(resolve,reject)=>{
+      const department=await dept.findOne({ _id:  crntdept});
+
+      resolve(department);
+
+    })
+  }
+
   function getusrDetails(crntdept){
     return new Promise(async(resolve,reject)=>{
 
       const department=await dept.findOne({ _id:  crntdept});
 
+      
+
+      //console.log(departmentmanager)
       const employees=department.employees.map(employee => employee.employeeId)
 
       const fullemployeedetails=await empdet.emp.find({_id: {$in: employees}}).lean();
+
+      fullemployeedetails.forEach(employee => {
+        // Add the formatted date
+        employee.formattedDate = moment(employee.dateField).format("DD-MM-YY");
+    
+        // Calculate the experience based on the dateField (assuming it's a date)
+        const currentDate = new Date(); // Current date
+        const dateField = new Date(employee.dateField); // Convert dateField to a Date object
+        const experience = currentDate.getFullYear() - dateField.getFullYear();
+        
+
+        const isExperienceGreaterThan5 = experience > 5;
+    
+        // Add the experience
+        employee.experience = experience;
+        
+        employee.isExperienceGreaterThan5 = isExperienceGreaterThan5;
+    });
 
       resolve(fullemployeedetails);
 
@@ -99,10 +137,28 @@ async function fnd() {
    
    })
    }
+
+   function update_manager(id,deptid,manager_name){
+    return new Promise(async(resolve,reject)=>{
+     
+      var manager_update={
+        manager:id,
+        manager_name:manager_name
+      }
+    
+      const updateddept = await dept.findByIdAndUpdate(deptid, manager_update, { new: true });
+
+      resolve(updateddept)
+    
+    }
+    )}
   
 
 module.exports={
     registerdept,
     fnd,
-    displaydept,dept,addemptodept,getusrDetails
+    displaydept,dept,addemptodept,getusrDetails,update_manager,getdeptDetails
 }
+
+
+//rrvDrbwgocPECh55

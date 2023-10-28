@@ -6,6 +6,7 @@ var depthelper = require("../CEOHelpers/ceodept");
 var empacthelper=require("../EmployeeHelers/Employeeregister");
 
 
+
 /* GET users listing. */
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
@@ -48,6 +49,11 @@ router.get("/login", function (req, res, next) {
   res.render("login", { user });
 });
 
+router.get("/register", function (req, res, next) {
+  res.render("login", { user });
+});
+
+
 router.get("/ceo-dashboard", verifyLogin,function (req, res, next) {
   res.render("login", { user });
   
@@ -68,14 +74,58 @@ depthelper.displaydept(req.query.id).then((response)=>{
 
 router.get("/view-employee", verifyLogin,function (req, res, next) {
 console.log(req.query.id)
+
+
   
   depthelper.getusrDetails(req.query.id).then((response)=>{
+
+
+
+    
+      //response.dateField=moment(response.dateField).format("DD-MM-YY");
+
+      
+console.log(response)
+      
 
     res.render("viewemp",{response});
 
   })
 
 });
+
+router.get("/showdepartmentdepartment", verifyLogin,function (req, res, next) {
+  console.log(req.query.id)
+  
+  
+    
+    depthelper.getdeptDetails(req.query.id).then((response)=>{
+  
+  
+  
+      
+        //response.dateField=moment(response.dateField).format("DD-MM-YY");
+  
+        
+  console.log(response)
+
+  res.render("department",{response})
+        
+  
+     
+  
+    })
+  
+  });
+
+router.get("/appoint-manager", verifyLogin,function (req, res, next) {
+ 
+  depthelper.update_manager(req.query.id,req.query.departmentid,req.query.manager_name).then((response)=>{
+ res.render("success");
+  })
+    
+  
+  });
 
 router.post("/login", function (req, res, next) {
   console.log(req.body);
@@ -95,9 +145,15 @@ router.post("/login", function (req, res, next) {
   });
 });
 
+router.post("/register", function (req, res, next) {
+ceohelper.register(req.body).then((response)=>{
+  res.redirect("/ceo/login");
+})
+});
+
 router.post("/add-dept", verifyLogin, function (req, res, next) {
   depthelper.registerdept(req.body).then((responce) => {
-    res.redirect("/ceo");
+    res.redirect("/ceo"); 
   }); 
 });
 

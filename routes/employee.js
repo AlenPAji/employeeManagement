@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/employee/login', function(req, res, next) {
-  res.render('login',{user : 'Employee',rte:'employee'});
+  res.render('devop');
 });
 
 
