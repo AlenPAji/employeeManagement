@@ -1,25 +1,42 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
     <style>
-      /* Center the content horizontally */ .center-content { display: flex;
-      flex-direction: column; align-items: center; text-align: center;
-      margin-top: 20px; } /* Circular profile picture */ .profile-picture {
-      width: 150px; height: 150px; border-radius: 50%; overflow: hidden; }
+      /* Center the content horizontally */
+      .center-content {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Circular profile picture */
+      .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
     </style>
     <title>Profile Page</title>
   </head>
   <body>
-    <div class="container text-center mt-5">
+    <div class="container mt-3">
       <div class="center-content">
         <!-- Circular Profile Picture -->
         <div class="profile-picture">
-          <img src="/stylesheets/images/manager.png" alt="image-not-found" class="img-fluid" />
+          <img
+            src="/stylesheets/images/manager.png"
+            alt="image-not-found"
+            class="img-fluid"
+          />
         </div>
 
         <!-- Name -->
@@ -27,48 +44,34 @@
       </div>
     </div>
 
-    <section>
-
-      <a href="/ceo/add-dept" class="btn btn-success m-3">Add Department</a>
-      <table class="table p-2">
-
+    <section class="container">
+      <a href="/ceo/add-dept" class="btn btn-success btn-block my-3">Add Department</a>
+      <table class="table table-bordered table-responsive-sm">
         <thead>
           <tr>
             <th scope="col">Department ID</th>
             <th scope="col">Department Name</th>
-
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
           {{#each deptdetails}}
-            <tr>
-              <th scope="row">{{this.departmentid}}</th>
-
-              <td>{{this.name}}</td>
-
-                 <td>
-                <a
-                  href="/ceo/view-employee?id={{this._id}}"
-                  class="btn btn-primary"
-                >view Employees</a>
-
-              <td>
-                <a
-                  href="/ceo/recruit-employee?id={{this._id}}"
-                  class="btn btn-success"
-                >Recruit</a>
-
-
-                <td>
-                <a
-                  href="/ceo/showdepartmentdepartment?id={{this._id}}"
-                  class="btn btn-danger"
-                >show details</a>
-                
-
-            </tr>
+          <tr>
+            <td>{{this.departmentid}}</td>
+            <td>{{this.name}}</td>
+            <td>
+              <a href="/ceo/view-employee?id={{this._id}}" class="btn btn-primary btn-sm mr-2">
+                View Employees
+              </a>
+              <a href="/ceo/recruit-employee?id={{this._id}}" class="btn btn-success btn-sm mr-2">
+                Recruit
+              </a>
+              <a href="/ceo/showdepartmentdepartment?id={{this._id}}" class="btn btn-danger btn-sm">
+                Show Details
+              </a>
+            </td>
+          </tr>
           {{/each}}
-
         </tbody>
       </table>
     </section>
