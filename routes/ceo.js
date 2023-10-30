@@ -153,7 +153,7 @@ ceohelper.register(req.body).then((response)=>{
 
 router.post("/add-dept", verifyLogin, function (req, res, next) {
   depthelper.registerdept(req.body).then((responce) => {
-    res.redirect("/ceo"); 
+    res.redirect("/ceo");  
   }); 
 });
 
